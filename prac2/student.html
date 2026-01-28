@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Student Management System</h1>
+
+    <div class="container">
+        <h2>All Students (JSON Format)</h2>
+        <pre id="allStudentsJson"></pre>
+    </div>
+
+    <div class="container">
+        <h2>Passed Students (Marks > 40)</h2>
+        <button onclick="showPassedStudents()">Show Passed Students</button>
+        <div id="passedStudents"></div>
+    </div>
+
+    <script>
+        const students = [
+            { name: "Alice", marks: 85 },
+            { name: "Bob", marks: 35 },
+            { name: "Charlie", marks: 55 },
+            { name: "David", marks: 25 },
+            { name: "Eve", marks: 95 }
+        ];
+
+        // Display all students in JSON format
+        document.getElementById('allStudentsJson').textContent = JSON.stringify(students, null, 2);
+
+        function showPassedStudents() {
+            const passedStudents = students.filter(student => student.marks > 40);
+            let output = '<ul>';
+            passedStudents.forEach(student => {
+                output += `<li>${student.name} - ${student.marks} marks</li>`;
+            });
+            output += '</ul>';
+            document.getElementById('passedStudents').innerHTML = output;
+        }
+    </script>
+</body>
+</html>
